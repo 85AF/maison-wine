@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050403">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+  <link href="assets/css/luxury-theme.css" rel="stylesheet">
+  <link href="assets/css/company-split.css" rel="stylesheet">
+  <title>Vitis</title>
+</head>
+<body data-page="vitis" data-company="vitis">
+  <div id="site-header"></div>
+  <main class="company-page-shell">
+    <section class="company-logo-hero">
+      <div class="container">
+        <img class="company-main-logo vitis-logo" src="assets/img/logo/logo-vitis.png" alt="Vitis">
+        <div class="company-bodega-row" aria-label="Bodegas Vitis">
+          <span>Ventisquero</span>
+          <span>Argento</span>
+          <span>Zonin</span>
+          <span>Félix Solís</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="company-carousel-section" aria-label="Selección de vinos destacados">
+      <div class="container">
+        <div class="company-selection-head">
+          <div>
+            <div class="section-eyebrow" data-company-name></div>
+            <h1>Vinos destacados</h1>
+          </div>
+          <a class="company-soft-link" data-company-catalog-link href="#">Ver catálogo completo</a>
+        </div>
+
+        <div class="company-showcase" data-company-carousel>
+          <button class="company-carousel-arrow prev" type="button" aria-label="Anterior" data-company-carousel-prev>
+            <i class="bi bi-chevron-left"></i>
+          </button>
+
+          <div class="company-carousel-viewport">
+            <div class="company-carousel-track" data-company-carousel-track></div>
+          </div>
+
+          <button class="company-carousel-arrow next" type="button" aria-label="Siguiente" data-company-carousel-next>
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="company-carousel-footer">
+          <span data-company-carousel-count></span>
+          <span>Usa las flechas o toca una botella para ver su detalle.</span>
+        </div>
+      </div>
+    </section>
+
+
+
+  </main>
+  <div id="site-footer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/company-scope.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/catalog.js"></script>
+  <script src="assets/js/company-page.js"></script>
+  <script src="assets/js/company-carousel.js"></script>
+  <script src="assets/js/theme-toggle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="assets/js/motion-gsap.js"></script>
+</body>
+</html>
