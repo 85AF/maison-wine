@@ -2054,3 +2054,451 @@ html[data-theme="light"] .company-entry-reveal{
   opacity:1!important;
   visibility:visible!important;
 }
+
+/* =========================================================
+   V58 - Fondo hero estático por empresa, más nítido y solo arriba
+   - Vitis: viñedo
+   - Maison Blanche: uvas
+   - Solo visible en .company-logo-hero
+   - Sin arrastrarse al carrusel ni al resto de secciones
+========================================================= */
+.company-logo-hero{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  min-height:calc(100vh - 72px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--company-bg)!important;
+}
+.company-logo-hero > .container{
+  position:relative;
+  z-index:2;
+}
+.company-logo-hero::before,
+.company-logo-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.company-logo-hero::before{
+  z-index:0;
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-size:cover;
+  transform:none;
+  opacity:.88;
+  filter:blur(1.8px) saturate(1.02) contrast(1.02) brightness(.58);
+  transition:opacity .28s ease, filter .28s ease;
+}
+.company-logo-hero::after{
+  z-index:1;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(243,213,138,.10), transparent 22%),
+    linear-gradient(180deg, rgba(5,4,3,.54) 0%, rgba(5,4,3,.36) 30%, rgba(5,4,3,.68) 100%);
+}
+body.company-vitis .company-logo-hero::before{
+  background-image:url('../img/ui/vitis-hero-vineyard.png');
+}
+body.company-maison .company-logo-hero::before{
+  background-image:url('../img/ui/maison-hero-grapes.png');
+}
+
+/* Solo el hero lleva imagen; el carrusel y el resto vuelven a fondo limpio */
+.company-carousel-section,
+.company-products-section{
+  position:relative;
+  background:linear-gradient(180deg,#050403 0%,#080604 52%,#050403 100%)!important;
+}
+.company-carousel-section::before,
+.company-carousel-section::after,
+.company-products-section::before,
+.company-products-section::after{
+  content:none!important;
+  display:none!important;
+}
+
+html[data-theme="light"] .company-logo-hero{
+  background:#f8f3e8!important;
+}
+html[data-theme="light"] .company-logo-hero::before{
+  opacity:.92;
+  filter:blur(1.2px) saturate(1.03) contrast(1.02) brightness(.94);
+}
+html[data-theme="light"] .company-logo-hero::after{
+  background:
+    radial-gradient(circle at 50% 42%, rgba(216,173,95,.08), transparent 24%),
+    linear-gradient(180deg, rgba(248,243,232,.34) 0%, rgba(248,243,232,.24) 24%, rgba(248,243,232,.52) 100%);
+}
+html[data-theme="light"] .company-carousel-section,
+html[data-theme="light"] .company-products-section{
+  background:#f8f3e8!important;
+}
+
+/* Un poco más de presencia visual en la parte superior sin perder lectura */
+.company-main-logo,
+.company-bodega-row{
+  position:relative;
+  z-index:3;
+}
+.company-main-logo{
+  filter:drop-shadow(0 18px 36px rgba(0,0,0,.30));
+}
+html[data-theme="dark"] .company-main-logo,
+html:not([data-theme]) .company-main-logo{
+  filter:drop-shadow(0 20px 42px rgba(0,0,0,.52));
+}
+
+@media (max-width: 991.98px){
+  .company-logo-hero{
+    min-height:62vh;
+  }
+  .company-logo-hero::before{
+    background-position:center center;
+    filter:blur(1.6px) saturate(1.02) contrast(1.02) brightness(.62);
+  }
+  html[data-theme="light"] .company-logo-hero::before{
+    filter:blur(1px) saturate(1.02) contrast(1.01) brightness(.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .company-logo-hero::before,
+  .company-logo-hero::after{
+    transition:none!important;
+  }
+}
+
+/* =========================================================
+   V59 - Fondo fijo solo en hero superior
+   La imagen queda estática al fondo y las demás secciones
+   pasan por encima ocultándola al hacer scroll.
+========================================================= */
+:root{
+  --company-hero-top-offset: 72px;
+  --company-section-dark: #050403;
+  --company-section-dark-2: #080604;
+  --company-section-light: #f8f3e8;
+}
+
+/* Apaga el sistema anterior de fondo directo sobre el hero */
+.company-logo-hero::before,
+.company-logo-hero::after{
+  content:none !important;
+  display:none !important;
+}
+
+.company-page-shell{
+  position:relative;
+  isolation:isolate;
+  background:transparent !important;
+}
+.company-page-shell::before,
+.company-page-shell::after{
+  content:"";
+  position:fixed;
+  left:0;
+  right:0;
+  pointer-events:none;
+}
+.company-page-shell::before{
+  top:var(--company-hero-top-offset);
+  height:calc(100vh - var(--company-hero-top-offset));
+  z-index:0;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center center;
+  filter:blur(0.8px) saturate(1.02) contrast(1.03) brightness(.46);
+  opacity:.96;
+}
+.company-page-shell::after{
+  top:var(--company-hero-top-offset);
+  height:calc(100vh - var(--company-hero-top-offset));
+  z-index:1;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(247,214,131,.10), transparent 24%),
+    linear-gradient(180deg, rgba(5,4,3,.32) 0%, rgba(5,4,3,.20) 42%, rgba(5,4,3,.58) 100%);
+}
+body.company-vitis .company-page-shell::before{
+  background-image:url('../img/ui/vitis-hero-vineyard.png');
+}
+body.company-maison .company-page-shell::before{
+  background-image:url('../img/ui/maison-hero-grapes.png');
+}
+
+.company-logo-hero{
+  position:relative;
+  z-index:2;
+  background:transparent !important;
+  min-height:calc(100vh - var(--company-hero-top-offset));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.company-logo-hero > .container{
+  position:relative;
+  z-index:3;
+}
+
+/* Desde aquí hacia abajo, todo va tapando el fondo fijo */
+.company-carousel-section,
+.company-products-section,
+#site-footer,
+.footer-maison{
+  position:relative;
+  z-index:4;
+}
+.company-carousel-section,
+.company-products-section{
+  background:linear-gradient(180deg, var(--company-section-dark) 0%, var(--company-section-dark-2) 100%) !important;
+}
+
+html[data-theme="light"] .company-page-shell::before{
+  filter:blur(0.6px) saturate(1.02) contrast(1.01) brightness(.88);
+  opacity:.94;
+}
+html[data-theme="light"] .company-page-shell::after{
+  background:
+    radial-gradient(circle at 50% 36%, rgba(216,173,95,.08), transparent 26%),
+    linear-gradient(180deg, rgba(248,243,232,.16) 0%, rgba(248,243,232,.10) 46%, rgba(248,243,232,.30) 100%);
+}
+html[data-theme="light"] .company-carousel-section,
+html[data-theme="light"] .company-products-section{
+  background:var(--company-section-light) !important;
+}
+
+/* Asegura que el fondo solo se vea arriba y no “contamine” el carrusel */
+.company-carousel-section::before,
+.company-carousel-section::after,
+.company-products-section::before,
+.company-products-section::after{
+  content:none !important;
+  display:none !important;
+}
+
+/* Un poco de presencia visual del logo sobre la imagen */
+.company-main-logo{
+  filter:drop-shadow(0 18px 34px rgba(0,0,0,.42));
+}
+html[data-theme="light"] .company-main-logo{
+  filter:drop-shadow(0 14px 24px rgba(85,60,26,.12));
+}
+
+@media (max-width: 991.98px){
+  :root{ --company-hero-top-offset: 64px; }
+  .company-page-shell::before,
+  .company-page-shell::after,
+  .company-logo-hero{
+    min-height:calc(82vh - var(--company-hero-top-offset));
+  }
+  .company-page-shell::before,
+  .company-page-shell::after{
+    height:calc(82vh - var(--company-hero-top-offset));
+  }
+}
+
+@media (max-width: 767.98px){
+  .company-page-shell::before,
+  .company-page-shell::after,
+  .company-logo-hero{
+    min-height:calc(74vh - var(--company-hero-top-offset));
+  }
+  .company-page-shell::before,
+  .company-page-shell::after{
+    height:calc(74vh - var(--company-hero-top-offset));
+    background-position:center center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .company-page-shell::before,
+  .company-page-shell::after{
+    transition:none !important;
+  }
+}
+
+/* =========================================================
+   V60 - Hero más bajo + fondo visible en modo claro
+   Ajuste pedido: min-height 60vh y fondo estático legible.
+========================================================= */
+body[data-company] .company-logo-hero{
+  min-height:60vh!important;
+  padding:82px 0 42px!important;
+  background:transparent!important;
+}
+body[data-company] .company-page-shell::before,
+body[data-company] .company-page-shell::after{
+  height:60vh!important;
+}
+
+/* En modo claro el fondo estaba tapado por reglas globales de fondo claro.
+   Estas reglas ganan por especificidad y dejan ver la imagen fija. */
+html[data-theme="light"] body[data-company] .company-page-shell,
+html[data-theme="light"] body[data-company] main.company-page-shell,
+html[data-theme="light"] body[data-company] .company-logo-hero{
+  background:transparent!important;
+}
+html[data-theme="light"] body[data-company] .company-logo-hero > .container{
+  background:transparent!important;
+}
+html[data-theme="light"] body[data-company] .company-page-shell::before{
+  opacity:1!important;
+  filter:blur(.35px) saturate(1.10) contrast(1.08) brightness(.82)!important;
+}
+html[data-theme="light"] body[data-company] .company-page-shell::after{
+  background:
+    radial-gradient(circle at 50% 36%, rgba(216,173,95,.05), transparent 24%),
+    linear-gradient(180deg, rgba(248,243,232,.10) 0%, rgba(248,243,232,.06) 42%, rgba(248,243,232,.18) 100%)!important;
+}
+
+/* En oscuro mantenemos presencia de imagen sin ensuciar el logo. */
+html[data-theme="dark"] body[data-company] .company-page-shell::before,
+html:not([data-theme]) body[data-company] .company-page-shell::before{
+  opacity:.98!important;
+  filter:blur(.55px) saturate(1.06) contrast(1.05) brightness(.52)!important;
+}
+html[data-theme="dark"] body[data-company] .company-page-shell::after,
+html:not([data-theme]) body[data-company] .company-page-shell::after{
+  background:
+    radial-gradient(circle at 50% 38%, rgba(247,214,131,.09), transparent 24%),
+    linear-gradient(180deg, rgba(5,4,3,.30) 0%, rgba(5,4,3,.20) 42%, rgba(5,4,3,.54) 100%)!important;
+}
+
+/* Las secciones de abajo siguen siendo opacas y tapan el fondo fijo al hacer scroll. */
+body[data-company] .company-carousel-section,
+body[data-company] .company-products-section,
+body[data-company] #site-footer,
+body[data-company] .footer-maison{
+  position:relative!important;
+  z-index:5!important;
+}
+html[data-theme="light"] body[data-company] .company-carousel-section,
+html[data-theme="light"] body[data-company] .company-products-section{
+  background:#f8f3e8!important;
+}
+html[data-theme="dark"] body[data-company] .company-carousel-section,
+html[data-theme="dark"] body[data-company] .company-products-section,
+html:not([data-theme]) body[data-company] .company-carousel-section,
+html:not([data-theme]) body[data-company] .company-products-section{
+  background:linear-gradient(180deg,#050403 0%,#080604 100%)!important;
+}
+
+@media(max-width:991.98px){
+  body[data-company] .company-logo-hero{
+    min-height:56vh!important;
+    padding:76px 0 38px!important;
+  }
+  body[data-company] .company-page-shell::before,
+  body[data-company] .company-page-shell::after{
+    height:56vh!important;
+  }
+}
+@media(max-width:575.98px){
+  body[data-company] .company-logo-hero{
+    min-height:52vh!important;
+    padding:70px 0 34px!important;
+  }
+  body[data-company] .company-page-shell::before,
+  body[data-company] .company-page-shell::after{
+    height:52vh!important;
+  }
+}
+
+/* =========================================================
+   V61 - Portada inicio con imagen propia por cada casa
+   Maison Blanche: copa sirviéndose
+   Vitis: cava / barricas
+========================================================= */
+.company-entry-card{
+  --entry-image:none;
+}
+.company-entry-card.maison-side{
+  --entry-image:url('../img/ui/entry-maison-wine.jpg');
+}
+.company-entry-card.vitis-side{
+  --entry-image:url('../img/ui/entry-vitis-cellar.jpg');
+}
+.company-entry-card::before{
+  inset:0!important;
+  z-index:-3!important;
+  background:
+    linear-gradient(180deg,rgba(5,4,3,.34) 0%,rgba(5,4,3,.62) 100%),
+    radial-gradient(circle at 50% 34%,rgba(243,213,138,.18),transparent 30rem),
+    var(--entry-image) center center / cover no-repeat !important;
+  opacity:.96!important;
+  filter:saturate(1.04) contrast(1.03) brightness(.60);
+  transition:transform .55s ease, filter .35s ease, opacity .35s ease;
+}
+.company-entry-card::after{
+  inset:0!important;
+  z-index:1!important;
+  background:
+    linear-gradient(180deg,rgba(5,4,3,.08),rgba(5,4,3,.24)),
+    radial-gradient(circle at 50% 48%,rgba(255,248,231,.08),transparent 60%) !important;
+  opacity:1!important;
+}
+.company-entry-card:hover::before{
+  opacity:1!important;
+  transform:scale(1.035);
+  filter:saturate(1.08) contrast(1.05) brightness(.68);
+}
+.company-entry-card:hover::after{
+  opacity:1!important;
+  transform:scale(1.02);
+}
+.company-entry-inner{
+  text-shadow:0 10px 28px rgba(0,0,0,.42);
+}
+.company-entry-logo,
+.company-entry-bodegas span{
+  position:relative;
+  z-index:5;
+}
+.company-entry-bodegas span{
+  background:rgba(8,7,5,.38)!important;
+  border:1px solid rgba(255,248,231,.08);
+  backdrop-filter:blur(10px);
+}
+.company-entry-reveal{
+  background:
+    radial-gradient(circle at var(--barrel-x,50%) var(--barrel-y,50%), rgba(243,213,138,.34), rgba(0,0,0,.06) 28%, transparent 58%),
+    linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0)),
+    var(--entry-image) center center / cover no-repeat !important;
+  filter:saturate(1.08) contrast(1.07) brightness(.94) drop-shadow(0 22px 58px rgba(0,0,0,.50));
+}
+.company-entry-card.maison-side .company-entry-reveal,
+.company-entry-card.vitis-side .company-entry-reveal{
+  background-position:center center, center center, center center;
+}
+html[data-theme="light"] .company-entry-card::before{
+  background:
+    linear-gradient(180deg,rgba(255,251,243,.22) 0%,rgba(255,251,243,.44) 100%),
+    radial-gradient(circle at 50% 34%,rgba(216,173,95,.16),transparent 30rem),
+    var(--entry-image) center center / cover no-repeat !important;
+  filter:saturate(1.01) contrast(1.02) brightness(.90);
+}
+html[data-theme="light"] .company-entry-card::after{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.12)),
+    radial-gradient(circle at 50% 48%,rgba(255,255,255,.06),transparent 60%) !important;
+}
+html[data-theme="light"] .company-entry-bodegas span{
+  background:rgba(255,251,243,.38)!important;
+  border-color:rgba(120,92,43,.12);
+  color:#362715!important;
+}
+html[data-theme="light"] .company-entry-reveal{
+  background:
+    radial-gradient(circle at var(--barrel-x,50%) var(--barrel-y,50%), rgba(216,173,95,.26), rgba(255,255,255,.03) 28%, transparent 58%),
+    linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),
+    var(--entry-image) center center / cover no-repeat !important;
+  filter:saturate(1.02) contrast(1.02) brightness(1.02) drop-shadow(0 16px 34px rgba(81,60,25,.14));
+}
+@media(max-width:991.98px){
+  .company-entry-card::before,
+  html[data-theme="light"] .company-entry-card::before{
+    background-position:center center, center center, center center!important;
+  }
+}
