@@ -2024,3 +2024,33 @@ html[data-theme="light"] .company-entry-reveal{
     font-size:2rem!important;
   }
 }
+
+
+/* =========================================================
+   V50 - FIX navbar visible en GitHub Pages
+   Evita que GSAP o estilos inline de carga dejen el menú oculto.
+========================================================= */
+#site-header,
+#mainNavbar,
+.navbar-maison{
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+}
+#site-header{
+  position:relative!important;
+  z-index:1045!important;
+}
+.navbar-maison{
+  display:block!important;
+  z-index:1045!important;
+}
+.navbar-maison .container,
+.navbar-maison .navbar-brand,
+.navbar-maison .navbar-collapse,
+.navbar-maison .navbar-nav,
+.navbar-maison .nav-link,
+.navbar-maison .theme-toggle{
+  opacity:1!important;
+  visibility:visible!important;
+}

@@ -167,6 +167,14 @@ function injectMaisonHotfixStyles() {
   document.head.appendChild(style);
 }
 
+function forceNavbarVisible() {
+  const nav = document.getElementById('mainNavbar');
+  if (!nav) return;
+  nav.style.opacity = '1';
+  nav.style.visibility = 'visible';
+  nav.style.pointerEvents = 'auto';
+}
+
 async function initLayout() {
   const headerTarget = document.getElementById('site-header');
   const footerTarget = document.getElementById('site-footer');
@@ -178,6 +186,8 @@ async function initLayout() {
   if (!document.querySelector('.floating-actions')) document.body.insertAdjacentHTML('beforeend', floatingActionsTemplate());
   applyLayoutConfig();
   setActiveNav();
+  forceNavbarVisible();
+  requestAnimationFrame(forceNavbarVisible);
   window.dispatchEvent(new Event('layout:ready'));
 }
 
@@ -220,5 +230,8 @@ window.floatingActionsTemplate = floatingActionsTemplate;
 document.addEventListener('DOMContentLoaded', initLayout);
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('mainNavbar');
-  if (nav) nav.classList.toggle('scrolled', window.scrollY > 18);
+  if (nav) {
+    nav.classList.toggle('scrolled', window.scrollY > 18);
+    forceNavbarVisible();
+  }
 });

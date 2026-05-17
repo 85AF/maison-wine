@@ -12,7 +12,7 @@
     if(!hasGsap()) return;
     const gsap = window.gsap;
     gsap.fromTo(document.body, { autoAlpha: .001 }, { autoAlpha: 1, duration: .55, ease: 'power2.out' });
-    qsa('.navbar-maison, .page-hero h1, .page-hero p, .catalog-toolbar, .company-logo-hero, .company-carousel-section').forEach((el, i) => {
+    qsa('.page-hero h1, .page-hero p, .catalog-toolbar, .company-logo-hero, .company-carousel-section').forEach((el, i) => {
       if(el.dataset.motionPage === 'true') return;
       el.dataset.motionPage = 'true';
       gsap.from(el, { autoAlpha: 0, y: 24, duration: .75, ease: 'power3.out', delay: Math.min(i * .055, .25) });
