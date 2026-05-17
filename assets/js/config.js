@@ -10,11 +10,11 @@ const CONFIG = {
   whatsappDisplay: "+58 414-2819931",
   phoneDisplay: "+58 414-2819931",
   orderEmail: "pedidos@maisonwinecollection.com",
-  address: "Dirección comercial pendiente de confirmar",
+  address: "Atención comercial vía WhatsApp y correo",
   schedule: "Lunes a sábado · 9:00 a 18:00",
   currency: "€",
   logoPath: "assets/img/logo/logo-maison.svg",
-  placeholderImage: "assets/img/productos/placeholder-botella.jpg",
+  placeholderImage: "assets/img/productos/placeholder-botella.png",
   social: {
     instagram: "https://www.instagram.com/",
     tiktok: "https://www.tiktok.com/",

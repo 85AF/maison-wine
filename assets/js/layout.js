@@ -1,9 +1,3 @@
-/* =========================================================
-   LAYOUT CENTRALIZADO
-   Header y footer están también en /components/header.html y /components/footer.html.
-   Si abres la web directamente con file://, algunos navegadores bloquean fetch;
-   por eso este archivo incluye fallback para que TODO funcione igual.
-========================================================= */
 const LAYOUT_TEMPLATES = {
   header: `<nav class="navbar navbar-expand-lg navbar-maison" id="mainNavbar">
   <div class="container">
@@ -18,19 +12,21 @@ const LAYOUT_TEMPLATES = {
     <div class="collapse navbar-collapse" id="mainMenu">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
         <li class="nav-item"><a class="nav-link" data-page="inicio" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" data-page="catalogo" href="catalogo.html">Catálogo</a></li>
-        <li class="nav-item"><a class="nav-link" data-page="bodegas" href="bodegas.html">Bodegas</a></li>
-        <li class="nav-item"><a class="nav-link" data-page="experiencia" href="experiencia.html">Experiencia</a></li>
+        <li class="nav-item"><a class="nav-link" data-page="vitis" href="vitis.html">Vitis</a></li>
+        <li class="nav-item"><a class="nav-link" data-page="maison" href="maison-blanche.html">Maison Blanche</a></li>
         <li class="nav-item"><a class="nav-link" data-page="nosotros" href="nosotros.html">Nosotros</a></li>
-        <li class="nav-item"><a class="nav-link" data-page="contacto" href="contacto.html">Contacto</a></li>
+        <li class="nav-item"><a class="nav-link" data-page="contacto" href="contacto.html">Contáctanos</a></li>
       </ul>
     </div>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar modo claro u oscuro">
+      <i class="bi bi-sun"></i>
+    </button>
   </div>
 </nav>`,
   footer: `<footer class="footer-maison">
   <div class="container">
     <div class="row g-4 g-xl-5 align-items-start">
-      <div class="col-12 col-lg-6 col-xl-3">
+      <div class="col-12 col-lg-6 col-xl-4">
         <div class="d-flex align-items-center gap-3 mb-3">
           <img class="footer-logo" src="assets/img/logo/logo-maison.svg" alt="Maison Wine Collection">
           <div class="footer-brand">Maison Wine Collection</div>
@@ -40,14 +36,13 @@ const LAYOUT_TEMPLATES = {
       </div>
 
       <div class="col-6 col-lg-3 col-xl-2">
-        <h6 class="footer-title">Secciones</h6>
+        <h6 class="footer-title">Colecciones</h6>
         <div class="d-grid gap-2">
           <a href="index.html">Inicio</a>
-          <a href="catalogo.html">Catálogo</a>
-          <a href="bodegas.html">Bodegas</a>
-          <a href="experiencia.html">Experiencia</a>
-          <a href="nosotros.html">Nosotros</a>
-          <a href="contacto.html">Contacto</a>
+          <a href="vitis.html">Vitis</a>
+          <a href="maison-blanche.html">Maison Blanche</a>
+          <a href="catalogo-vitis.html">Catálogo Vitis</a>
+          <a href="catalogo-maison-blanche.html">Catálogo Maison Blanche</a>
         </div>
       </div>
 
@@ -63,35 +58,16 @@ const LAYOUT_TEMPLATES = {
       <div class="col-12 col-lg-6 col-xl-3">
         <h6 class="footer-title">Contacto</h6>
         <div class="footer-contact-list">
-          <div class="footer-contact-item">
-            <i class="bi bi-whatsapp text-gold"></i>
-            <a class="js-whatsapp-display" href="#">+58 414-2819931</a>
-          </div>
-          <div class="footer-contact-item">
-            <i class="bi bi-envelope text-gold"></i>
-            <a class="js-order-email" href="mailto:pedidos@maisonwinecollection.com">pedidos@maisonwinecollection.com</a>
-          </div>
-          <div class="footer-contact-item">
-            <i class="bi bi-clock text-gold"></i>
-            <span class="js-schedule">Lunes a sábado · 9:00 a 18:00</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 col-lg-6 col-xl-2">
-        <h6 class="footer-title">Redes sociales</h6>
-        <div class="social-links">
-          <a class="js-social-tiktok" href="#" target="_blank" rel="noopener" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-          <a class="js-social-instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-          <a class="js-social-facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a class="js-social-linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <div class="footer-contact-item"><i class="bi bi-whatsapp text-gold"></i><a class="js-whatsapp-display" href="#">+58 414-2819931</a></div>
+          <div class="footer-contact-item"><i class="bi bi-envelope text-gold"></i><a class="js-order-email" href="mailto:pedidos@maisonwinecollection.com">pedidos@maisonwinecollection.com</a></div>
+          <div class="footer-contact-item"><i class="bi bi-clock text-gold"></i><span class="js-schedule">Lunes a sábado · 9:00 a 18:00</span></div>
         </div>
       </div>
     </div>
 
     <div class="legal-note mt-5 d-flex flex-column flex-md-row justify-content-between gap-2">
-      <span>© <span class="js-year"></span> Maison Wine Collection. Todos los derechos reservados.</span>
-      <span>Catálogo sin pasarela de pago. Pedido sujeto a confirmación de disponibilidad y precio final.</span>
+      <span>© <span class="js-year"></span> <span class="footer-brand-inline">Maison Wine Collection</span>. Todos los derechos reservados.</span>
+      <span>Catálogo sin pasarela de pago. Pedido sujeto a confirmación de disponibilidad.</span>
     </div>
   </div>
 </footer>`
@@ -109,10 +85,6 @@ function cartOffcanvasTemplate() {
     </div>
     <div class="offcanvas-body">
       <div id="cartItems"></div>
-      <div class="cart-total d-flex justify-content-between align-items-center">
-        <span class="fw-bold">Total estimado</span>
-        <strong class="fs-4" id="cartTotal">0 €</strong>
-      </div>
       <button class="btn btn-outline-maison w-100 mb-4" type="button" id="clearCart"><i class="bi bi-trash3"></i> Vaciar carrito</button>
       <form id="cartForm" novalidate>
         <h6 class="fw-black mb-3">Datos del cliente</h6>
@@ -141,13 +113,13 @@ function cartOffcanvasTemplate() {
 function productDetailModalTemplate() {
   return `
   <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-centered product-detail-modal-dialog">
       <div class="modal-content border-0 rounded-maison overflow-hidden">
         <div class="modal-header bg-dark-maison">
           <h5 class="modal-title font-title fs-3" id="productModalTitle">Detalle del producto</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
-        <div class="modal-body p-4 p-lg-5" id="productModalBody"></div>
+        <div class="modal-body product-detail-modal-body" id="productModalBody"></div>
       </div>
     </div>
   </div>`;
@@ -210,8 +182,8 @@ async function initLayout() {
 }
 
 function applyLayoutConfig() {
-  document.querySelectorAll('.brand-text,.footer-brand').forEach(el => el.textContent = CONFIG.brandName);
-  document.querySelectorAll('img[src="assets/img/logo/logo-maison.svg"]').forEach(img => img.src = CONFIG.logoPath);
+  document.querySelectorAll('.brand-text,.footer-brand,.footer-brand-inline').forEach(el => el.textContent = CONFIG.brandName);
+  document.querySelectorAll('img[src="assets/img/logo/logo-maison.svg"], .brand-mark img, .footer-logo').forEach(img => { img.src = CONFIG.logoPath; img.alt = CONFIG.brandName; });
   document.querySelectorAll('.js-whatsapp-display').forEach(a => {
     a.textContent = CONFIG.whatsappDisplay;
     a.href = `https://wa.me/${CONFIG.whatsappNumber}`;

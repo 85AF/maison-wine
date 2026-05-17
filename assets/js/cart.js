@@ -9,7 +9,7 @@ let cartEventsBound = false;
 let lastAddSignature = '';
 let lastAddTime = 0;
 
-const allItems = () => [...(window.PRODUCTS || []), ...(window.PACKS || [])];
+const allItems = () => [...(window.ALL_PRODUCTS || window.PRODUCTS || []), ...(window.PACKS || [])];
 const findItem = id => allItems().find(item => item.id === id);
 const money = value => {
   const currency = window.CONFIG?.currency || '€';
@@ -71,10 +71,6 @@ function cartOffcanvasFallbackTemplate(){
     </div>
     <div class="offcanvas-body">
       <div id="cartItems"></div>
-      <div class="cart-total d-flex justify-content-between align-items-center">
-        <span class="fw-bold">Total estimado</span>
-        <strong class="fs-4" id="cartTotal">0 €</strong>
-      </div>
       <button class="btn btn-outline-maison w-100 mb-4" type="button" id="clearCart"><i class="bi bi-trash3"></i> Vaciar carrito</button>
       <form id="cartForm" novalidate>
         <h6 class="fw-black mb-3">Datos del cliente</h6>
@@ -153,18 +149,17 @@ function renderCart(){
   loadCartOnce();
   const target = document.getElementById('cartItems');
   const totalTarget = document.getElementById('cartTotal');
-  if(!target || !totalTarget) return;
+  if(!target) return;
 
   if(cart.length === 0){
     target.innerHTML = `<div class="empty-state"><i class="bi bi-bag fs-1 d-block mb-2"></i><strong>Tu carrito está vacío</strong><p class="mb-0">Añade vinos del catálogo para preparar la solicitud.</p></div>`;
-    totalTarget.textContent = `0 ${window.CONFIG?.currency || '€'}`;
+    if(totalTarget) totalTarget.textContent = '';
     return;
   }
 
   target.innerHTML = cart.map(row => {
     const item = findItem(row.id);
     if(!item) return '';
-    const subtotal = typeof item.precio === 'number' ? item.precio * Number(row.qty || 0) : 0;
     return `<div class="cart-item">
       <img src="${item.imagen}" alt="${item.nombre}" onerror="this.src='${window.CONFIG?.placeholderImage || ''}'">
       <div>
@@ -177,13 +172,12 @@ function renderCart(){
         </div>
       </div>
       <div class="text-end">
-        <strong>${subtotal ? money(subtotal) : 'Consultar'}</strong><br>
         <button class="btn btn-sm text-danger p-0 mt-2" type="button" data-cart-remove="${item.id}">Eliminar</button>
       </div>
     </div>`;
   }).join('');
 
-  totalTarget.textContent = money(cartTotal());
+  if(totalTarget) totalTarget.textContent = '';
 }
 
 function addToCart(id, qty = 1){
@@ -305,10 +299,9 @@ function buildOrderMessage(){
   cart.forEach((row, idx) => {
     const item = findItem(row.id);
     if(!item) return;
-    lines.push(`${idx + 1}. ${item.nombre} - ${item.bodega || 'Maison'} - Cantidad: ${row.qty} - Precio: ${money(item.precio)}`);
+    lines.push(`${idx + 1}. ${item.nombre} - ${item.bodega || 'Maison'} - Cantidad: ${row.qty}`);
   });
-  lines.push('', `TOTAL: ${money(cartTotal())}`, '');
-  lines.push('Quedo atento/a para confirmar disponibilidad, precio final y entrega.');
+  lines.push('', 'Quedo atento/a para confirmar disponibilidad y entrega.');
   return lines.join('\n');
 }
 

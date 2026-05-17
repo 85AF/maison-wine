@@ -6,6 +6,103 @@ let currentCategory = 'Todos';
 let catalogInitialized = false;
 let initialUrlFiltersApplied = false;
 
+
+function closeLuxurySelects(exceptId = ''){
+  document.querySelectorAll('.lux-select').forEach(wrapper => {
+    const isCurrent = exceptId && wrapper.dataset.selectId === exceptId;
+    wrapper.classList.toggle('is-open', Boolean(isCurrent));
+    const trigger = wrapper.querySelector('.lux-select-trigger');
+    if(trigger) trigger.setAttribute('aria-expanded', isCurrent ? 'true' : 'false');
+  });
+}
+
+function syncLuxurySelect(select){
+  if(!select) return;
+  const wrapper = document.querySelector(`.lux-select[data-select-id="${select.id}"]`);
+  if(!wrapper) return;
+
+  const valueLabel = wrapper.querySelector('.lux-select-value');
+  const optionButtons = [...wrapper.querySelectorAll('.lux-select-option')];
+  const selectedOption = [...select.options].find(opt => opt.value === select.value) || select.options[select.selectedIndex] || select.options[0];
+  const selectedValue = selectedOption?.value || 'Todos';
+  const selectedText = selectedOption?.textContent || selectedValue;
+
+  if(valueLabel) valueLabel.textContent = selectedText;
+  optionButtons.forEach(btn => {
+    const active = btn.dataset.value === selectedValue;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+}
+
+function enhanceLuxurySelect(selectId){
+  const select = document.getElementById(selectId);
+  if(!select || select.dataset.enhanced === 'true') return;
+
+  select.dataset.enhanced = 'true';
+  select.classList.add('lux-native-select');
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'lux-select';
+  wrapper.dataset.selectId = select.id;
+
+  const trigger = document.createElement('button');
+  trigger.type = 'button';
+  trigger.className = 'lux-select-trigger';
+  trigger.setAttribute('aria-haspopup', 'listbox');
+  trigger.setAttribute('aria-expanded', 'false');
+  trigger.innerHTML = '<span class="lux-select-value"></span><i class="bi bi-chevron-down"></i>';
+
+  const menu = document.createElement('div');
+  menu.className = 'lux-select-menu';
+  menu.setAttribute('role', 'listbox');
+
+  [...select.options].forEach((opt, index) => {
+    const optionBtn = document.createElement('button');
+    optionBtn.type = 'button';
+    optionBtn.className = 'lux-select-option';
+    optionBtn.dataset.value = opt.value;
+    optionBtn.dataset.index = String(index);
+    optionBtn.setAttribute('role', 'option');
+    optionBtn.textContent = opt.textContent;
+    optionBtn.addEventListener('click', () => {
+      select.value = opt.value;
+      syncLuxurySelect(select);
+      closeLuxurySelects('');
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    menu.appendChild(optionBtn);
+  });
+
+  trigger.addEventListener('click', event => {
+    event.preventDefault();
+    const willOpen = !wrapper.classList.contains('is-open');
+    closeLuxurySelects(willOpen ? select.id : '');
+  });
+
+  wrapper.appendChild(trigger);
+  wrapper.appendChild(menu);
+  select.insertAdjacentElement('afterend', wrapper);
+
+  select.addEventListener('change', () => syncLuxurySelect(select));
+  syncLuxurySelect(select);
+}
+
+function initLuxurySelects(){
+  enhanceLuxurySelect('countryFilter');
+  enhanceLuxurySelect('wineryFilter');
+
+  document.addEventListener('click', event => {
+    if(event.target.closest('.lux-select')) return;
+    closeLuxurySelects('');
+  });
+
+  document.addEventListener('keydown', event => {
+    if(event.key === 'Escape') closeLuxurySelects('');
+  });
+}
+
+
 function shortText(text, limit = 120){
   if(!text) return 'Consultar';
   return text.length > limit ? text.slice(0, limit).trim() + '…' : text;
@@ -34,8 +131,6 @@ function resolveBodegaFromUrl(){
   const decoded = decodeURIComponent(raw).trim();
   if(!decoded || normalizeText(decoded) === 'todos') return 'Todos';
 
-  // Maison Blanche representa el portafolio/importador, no una bodega del selector del catálogo.
-  if(normalizeText(decoded) === 'maison blanche') return 'Todos';
 
   const bodegasDisponibles = [...new Set((window.PRODUCTS || []).map(p => p.bodega).filter(Boolean))];
   const found = bodegasDisponibles.find(name => normalizeText(name) === normalizeText(decoded));
@@ -86,7 +181,7 @@ function applyInitialUrlFilters(){
 }
 
 function productCard(item){
-  return `<article class="product-card reveal">
+  return `<article class="product-card reveal visible">
     <div class="product-img-wrap">
       <span class="product-badge">${item.etiqueta || item.categoria || 'Vino'}</span>
       <img src="${item.imagen}" alt="${item.nombre}" onerror="this.src='${CONFIG.placeholderImage}'">
@@ -101,7 +196,6 @@ function productCard(item){
       </div>
       <p class="product-desc">${shortText(item.descripcion, 132)}</p>
       <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
-        <span class="price">${money(item.precio)}</span>
         <small class="text-muted">${item.alcohol || 'Consultar'}</small>
       </div>
       <div class="product-actions d-grid gap-2">
@@ -120,7 +214,6 @@ function packCard(item){
         <span class="product-badge position-static d-inline-block mb-2">${item.etiqueta || 'Pack'}</span>
         <h3>${item.nombre}</h3>
         <p class="section-text small mb-2">${item.descripcion}</p>
-        <div class="fw-black text-wine mb-3">${money(item.precio)}</div>
         <button class="btn btn-maison btn-sm" type="button" data-add-cart="${item.id}"><i class="bi bi-bag-plus"></i> Añadir pack</button>
       </div>
     </div>
@@ -150,12 +243,58 @@ function renderCatalog(){
   document.getElementById('productCount')?.replaceChildren(document.createTextNode(countText));
 
   if(filtered.length === 0){
-    grid.innerHTML = `<div class="col-12"><div class="empty-state"><i class="bi bi-search fs-1 d-block mb-2"></i><strong>No encontramos resultados</strong><p class="mb-0">Prueba cambiando filtros o búsqueda.</p></div></div>`;
+    grid.innerHTML = `<div class="col-12"><div class="empty-state"><i class="bi bi-search fs-1 d-block mb-2"></i><strong>No encontramos resultados</strong><p class="mb-0">Intenta cambiar filtros o búsqueda.</p></div></div>`;
     return;
   }
 
   grid.innerHTML = filtered.map(p => `<div class="col-md-6 col-xl-4 d-flex">${productCard(p)}</div>`).join('');
   if(typeof observeReveals === 'function') observeReveals();
+}
+
+
+function escapeHtml(value){
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function renderPdfDetail(item){
+  const detail = item.detallePdf || {};
+  const officialDescription = detail.descripcionOficial || item.descripcion || 'Consultar descripción.';
+  const ficha = detail.ficha || {};
+  const longLabels = ['fermentación', 'fermentacion', 'roble', 'crianza', 'gastronomía', 'gastronomia', 'acompañante', 'información', 'informacion'];
+  const rows = Object.entries(ficha)
+    .filter(([, value]) => value !== undefined && value !== null && String(value).trim() !== '')
+    .map(([label, value]) => {
+      const cleanLabel = String(label || '').trim();
+      const cleanValue = String(value || '').trim();
+      const isLong = longLabels.some(term => cleanLabel.toLowerCase().includes(term)) || cleanValue.length > 95;
+      return `
+        <div class="pdf-detail-row ${isLong ? 'is-wide' : ''}">
+          <span>${escapeHtml(cleanLabel)}</span>
+          <strong>${escapeHtml(cleanValue)}</strong>
+        </div>
+      `;
+    }).join('');
+
+  const infoAdicional = detail.infoAdicional
+    ? `<div class="pdf-detail-extra"><strong>Información adicional</strong><p>${escapeHtml(detail.infoAdicional)}</p></div>`
+    : '';
+
+  return `
+    <div class="official-detail-block official-detail-compact">
+      <div class="official-detail-topline">
+        <span class="official-detail-kicker">Ficha oficial del catálogo</span>
+        <h3>Información completa</h3>
+      </div>
+      <p class="official-description">${escapeHtml(officialDescription)}</p>
+      <div class="pdf-detail-grid">${rows}</div>
+      ${infoAdicional}
+    </div>
+  `;
 }
 
 function showProductDetail(id){
@@ -169,25 +308,22 @@ function showProductDetail(id){
   title.textContent = item.nombre;
   const whatsappMsg = encodeURIComponent(`Hola, quiero consultar disponibilidad de ${item.nombre} - ${item.bodega}.`);
 
-  body.innerHTML = `<div class="row g-4 align-items-center">
-    <div class="col-lg-5"><div class="product-detail-img"><img src="${item.imagen}" alt="${item.nombre}" onerror="this.src='${CONFIG.placeholderImage}'"></div></div>
-    <div class="col-lg-7">
-      <span class="product-badge position-static d-inline-block mb-3">${item.etiqueta || item.categoria || 'Vino'}</span>
-      <h2 class="font-title display-5 mb-2">${item.nombre}</h2>
-      <p class="product-meta mb-3">${item.bodega} · ${item.linea || 'Colección'}</p>
-      <p class="section-text">${item.descripcion || 'Consultar descripción.'}</p>
-      <div class="row g-3 mb-4">
-        <div class="col-sm-6"><div class="stat-card"><strong>País / región</strong><br><span>${item.pais || 'Consultar'} · ${item.region || 'Consultar'}</span></div></div>
-        <div class="col-sm-6"><div class="stat-card"><strong>Cepa</strong><br><span>${item.cepa || 'Consultar'}</span></div></div>
-        <div class="col-sm-6"><div class="stat-card"><strong>Alcohol</strong><br><span>${item.alcohol || 'Consultar'}</span></div></div>
-        <div class="col-sm-6"><div class="stat-card"><strong>Servicio</strong><br><span>${item.temperatura || 'Consultar'}</span></div></div>
+  body.innerHTML = `<div class="product-detail-layout">
+    <aside class="product-detail-visual">
+      <div class="product-detail-img"><img src="${item.imagen}" alt="${item.nombre}" onerror="this.src='${CONFIG.placeholderImage}'"></div>
+    </aside>
+    <section class="product-detail-content">
+      <div class="product-detail-heading">
+        <span class="product-badge position-static d-inline-block">${item.etiqueta || item.categoria || 'Vino'}</span>
+        <h2 class="font-title product-detail-title">${item.nombre}</h2>
+        <p class="product-meta product-detail-meta">${item.bodega} · ${item.linea || 'Colección'}</p>
       </div>
-      <div class="paper-card p-3 mb-4"><strong><i class="bi bi-egg-fried text-gold me-2"></i>Maridaje / gastronomía</strong><p class="mb-0 mt-2 text-muted">${item.maridaje || 'Consultar'}</p></div>
-      <div class="d-flex flex-column flex-sm-row gap-2">
+      ${renderPdfDetail(item)}
+      <div class="product-detail-actions">
         <button class="btn btn-wine" type="button" data-add-cart="${item.id}"><i class="bi bi-bag-plus"></i> Añadir al carrito</button>
         <a class="btn btn-maison" target="_blank" rel="noopener" href="https://wa.me/${CONFIG.whatsappNumber}?text=${whatsappMsg}"><i class="bi bi-whatsapp"></i> Consultar por WhatsApp</a>
       </div>
-    </div>
+    </section>
   </div>`;
 
   const modalEl = document.getElementById('productModal');
@@ -207,6 +343,7 @@ function initCatalog(){
   catalogInitialized = true;
 
   applyInitialUrlFilters();
+  initLuxurySelects();
 
   document.querySelectorAll('[data-category]').forEach(btn => {
     btn.addEventListener('click', () => {

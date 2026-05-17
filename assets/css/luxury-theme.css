@@ -1,0 +1,1338 @@
+/* =========================================================
+   MAISON WINE COLLECTION · Luxury Theme v20
+   Look & feel elegante: negro profundo, blanco marfil y dorado.
+   Esta hoja se carga al final para unificar todo el diseño.
+========================================================= */
+:root{
+  --luxury-black:#050403;
+  --luxury-black-2:#0b0906;
+  --luxury-black-3:#13100b;
+  --luxury-panel:#16120c;
+  --luxury-panel-2:#21190f;
+  --luxury-gold:#d8ad5f;
+  --luxury-gold-2:#f3d58a;
+  --luxury-gold-3:#a9782f;
+  --luxury-white:#fff8e7;
+  --luxury-ivory:#efe1c0;
+  --luxury-muted:#b9a981;
+  --luxury-wine:#8f153a;
+  --luxury-line:rgba(216,173,95,.28);
+  --luxury-line-soft:rgba(255,248,231,.09);
+  --luxury-shadow:0 28px 80px rgba(0,0,0,.48);
+  --luxury-shadow-soft:0 18px 52px rgba(0,0,0,.34);
+
+  --cream:#090705!important;
+  --cream-2:#0f0b07!important;
+  --paper:#15110b!important;
+  --paper-2:#21190f!important;
+  --wine:#8f153a!important;
+  --wine-2:#b3194a!important;
+  --green:#0d1712!important;
+  --green-2:#14261d!important;
+  --charcoal:#050403!important;
+  --ink:#fff8e7!important;
+  --stone:#b9a981!important;
+  --gold:#d8ad5f!important;
+  --gold-2:#f3d58a!important;
+  --white:#fff8e7!important;
+  --shadow-soft:var(--luxury-shadow)!important;
+  --shadow-card:var(--luxury-shadow-soft)!important;
+}
+
+html{background:var(--luxury-black)!important;}
+body{
+  color:var(--luxury-white)!important;
+  background:
+    radial-gradient(circle at 14% -5%,rgba(243,213,138,.16),transparent 34rem),
+    radial-gradient(circle at 88% 8%,rgba(143,21,58,.16),transparent 32rem),
+    radial-gradient(circle at 50% 108%,rgba(216,173,95,.10),transparent 38rem),
+    linear-gradient(180deg,#050403 0%,#0b0906 46%,#050403 100%)!important;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.22;
+  background-image:
+    linear-gradient(rgba(255,248,231,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,248,231,.045) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.9),transparent 78%);
+}
+
+::selection{background:rgba(216,173,95,.34);color:#fff;}
+a:hover{color:var(--luxury-gold-2)!important;}
+.text-muted{color:var(--luxury-muted)!important;}
+.text-dark{color:var(--luxury-white)!important;}
+.text-wine,.text-gold{color:var(--luxury-gold-2)!important;}
+
+/* Tipografía y secciones */
+.section-padding{padding:104px 0!important;}
+.section-padding-sm{padding:76px 0!important;}
+.section-eyebrow{
+  color:var(--luxury-gold-2)!important;
+  letter-spacing:.22em!important;
+  font-size:.74rem!important;
+  font-weight:950!important;
+}
+.section-title,
+.page-hero h1,
+.hero h1,
+.product-card h3,
+.bodega-card h3,
+.pack-card h3,
+.info-card h3,
+.footer-brand{
+  color:var(--luxury-white)!important;
+  text-shadow:0 18px 52px rgba(0,0,0,.38);
+}
+.section-title{
+  max-width:980px;
+}
+.section-text,
+.product-desc,
+.accordion-body,
+.showcase-subtitle,
+.footer-maison p,
+.footer-maison a,
+.legal-note,
+.breadcrumb-mini,
+.breadcrumb-mini span{
+  color:var(--luxury-muted)!important;
+}
+.divider-gold,
+.navbar-maison .nav-link::after{
+  background:linear-gradient(90deg,transparent,var(--luxury-gold-2),transparent)!important;
+}
+
+/* Fondos globales */
+.bg-paper{
+  background:
+    radial-gradient(circle at 12% 0%,rgba(216,173,95,.14),transparent 30rem),
+    radial-gradient(circle at 90% 18%,rgba(143,21,58,.14),transparent 28rem),
+    linear-gradient(180deg,#0a0805 0%,#100c08 54%,#050403 100%)!important;
+}
+.bg-dark-maison,
+.page-hero{
+  background:
+    radial-gradient(circle at 82% 0%,rgba(216,173,95,.18),transparent 24rem),
+    linear-gradient(135deg,#050403 0%,#120d08 56%,#34111d 100%)!important;
+  color:var(--luxury-white)!important;
+}
+.page-hero::after{
+  background:radial-gradient(circle,rgba(216,173,95,.18),transparent 64%)!important;
+  border:1px solid rgba(216,173,95,.18)!important;
+}
+
+/* Navbar */
+.navbar-maison{
+  padding:16px 0!important;
+  background:rgba(5,4,3,.78)!important;
+  border-bottom:1px solid rgba(216,173,95,.22)!important;
+  backdrop-filter:blur(22px)!important;
+  box-shadow:0 20px 60px rgba(0,0,0,.32)!important;
+}
+.navbar-maison.scrolled{
+  padding:10px 0!important;
+  background:rgba(5,4,3,.94)!important;
+  box-shadow:0 18px 58px rgba(0,0,0,.50)!important;
+}
+.brand-mark{color:var(--luxury-white)!important;}
+.brand-text{font-weight:900!important;letter-spacing:-.04em!important;}
+.brand-mark img,
+.footer-logo{
+  background:radial-gradient(circle at 35% 25%,#fff0bd,#d8ad5f 43%,#130d07 44%,#050403 100%)!important;
+  border:1px solid rgba(243,213,138,.45)!important;
+  box-shadow:0 12px 32px rgba(216,173,95,.20)!important;
+}
+.brand-symbol{
+  background:radial-gradient(circle at 35% 25%,#fff0bd,#d8ad5f 43%,#130d07 44%,#050403 100%)!important;
+  border:1px solid rgba(243,213,138,.45)!important;
+  color:#fff!important;
+}
+.navbar-maison .nav-link{
+  color:rgba(255,248,231,.86)!important;
+  font-size:.93rem!important;
+  letter-spacing:.01em!important;
+}
+.navbar-maison .nav-link:hover,
+.navbar-maison .nav-link.active{color:var(--luxury-gold-2)!important;}
+.navbar-toggler i{color:var(--luxury-gold-2)!important;}
+.navbar-collapse{
+  background:transparent!important;
+  border:0!important;
+}
+@media(max-width:991px){
+  .navbar-collapse{
+    background:rgba(10,8,5,.98)!important;
+    border:1px solid rgba(216,173,95,.20)!important;
+    box-shadow:var(--luxury-shadow-soft)!important;
+  }
+}
+
+/* Botones */
+.btn-maison,
+.btn-wine,
+.float-cart{
+  background:linear-gradient(135deg,#7b1031,#b3194a)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,248,231,.08)!important;
+  box-shadow:0 18px 42px rgba(143,21,58,.34)!important;
+}
+.btn-maison:hover,
+.btn-wine:hover,
+.float-cart:hover{
+  transform:translateY(-2px)!important;
+  box-shadow:0 24px 56px rgba(143,21,58,.45)!important;
+}
+.btn-gold,
+.btn-outline-maison:hover,
+.filter-btn.active,
+.filter-btn:hover,
+.showcase-chip.active,
+.showcase-chip:hover,
+.wine-cover-actions .btn-outline-light:hover{
+  background:linear-gradient(135deg,var(--luxury-gold),var(--luxury-gold-2))!important;
+  color:#120d06!important;
+  border-color:rgba(243,213,138,.8)!important;
+  box-shadow:0 18px 42px rgba(216,173,95,.23)!important;
+}
+.btn-outline-maison,
+.filter-btn,
+.showcase-chip,
+.btn-outline-light,
+.cart-pill,
+.btn-icon{
+  background:rgba(255,248,231,.06)!important;
+  color:var(--luxury-gold-2)!important;
+  border:1px solid rgba(216,173,95,.34)!important;
+  box-shadow:0 12px 32px rgba(0,0,0,.22)!important;
+}
+.cart-pill:hover,.btn-icon:hover{
+  background:rgba(216,173,95,.14)!important;
+  color:var(--luxury-white)!important;
+}
+.cart-count{
+  background:linear-gradient(135deg,var(--luxury-gold),var(--luxury-gold-2))!important;
+  color:#120d06!important;
+}
+.float-whatsapp{background:#1ea95a!important;color:#fff!important;}
+
+/* Hero */
+.hero{
+  min-height:96vh!important;
+  padding:158px 0 104px!important;
+  color:var(--luxury-white)!important;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(8,6,4,.88) 48%,rgba(91,57,13,.36) 100%),
+    url('../img/banners/hero-vinedo.svg') center/cover no-repeat!important;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 72% 32%,rgba(216,173,95,.18),transparent 28rem),
+    linear-gradient(90deg,rgba(0,0,0,.25),transparent 54%);
+}
+.hero::after{
+  background:linear-gradient(180deg,transparent 0%,rgba(5,4,3,.94) 72%,#050403 100%)!important;
+  clip-path:none!important;
+}
+.hero h1{
+  max-width:900px;
+  letter-spacing:-.06em!important;
+}
+.hero p{color:rgba(255,248,231,.78)!important;}
+.hero-badges span{
+  background:rgba(255,248,231,.07)!important;
+  border:1px solid rgba(216,173,95,.28)!important;
+  color:var(--luxury-ivory)!important;
+}
+.hero-panel,
+.stat-card{
+  background:linear-gradient(180deg,rgba(255,248,231,.10),rgba(255,248,231,.045))!important;
+  border:1px solid rgba(216,173,95,.30)!important;
+  color:var(--luxury-white)!important;
+  box-shadow:var(--luxury-shadow)!important;
+}
+.hero-panel img{
+  border:1px solid rgba(216,173,95,.18)!important;
+  background:#0f0b07!important;
+}
+.stat-card small{color:var(--luxury-muted)!important;}
+.stat-card strong{font-family:'Playfair Display',serif;color:var(--luxury-gold-2)!important;font-size:1.75rem;}
+
+/* Cards generales */
+.paper-card,
+.benefit-card,
+.bodega-card,
+.pack-card,
+.info-card,
+.catalog-toolbar,
+.product-card,
+.accordion-item,
+.modal-content,
+.offcanvas,
+.empty-state,
+.showcase-filter-panel{
+  background:
+    linear-gradient(180deg,rgba(255,248,231,.085),rgba(255,248,231,.035)),
+    linear-gradient(135deg,rgba(216,173,95,.05),rgba(143,21,58,.035))!important;
+  border:1px solid rgba(216,173,95,.25)!important;
+  color:var(--luxury-white)!important;
+  box-shadow:var(--luxury-shadow-soft)!important;
+  backdrop-filter:blur(18px)!important;
+}
+.paper-card:hover,
+.benefit-card:hover,
+.bodega-card:hover,
+.pack-card:hover,
+.info-card:hover,
+.product-card:hover{
+  border-color:rgba(243,213,138,.46)!important;
+  box-shadow:0 32px 86px rgba(0,0,0,.52)!important;
+}
+.card-icon{
+  background:linear-gradient(135deg,#d8ad5f,#f3d58a)!important;
+  color:#100b05!important;
+  box-shadow:0 18px 38px rgba(216,173,95,.20)!important;
+}
+.bodega-card .meta,
+.product-meta,
+.wine-expanded-kicker,
+.showcase-filter-label,
+.footer-title{
+  color:var(--luxury-gold-2)!important;
+}
+
+/* Catálogo y productos */
+.catalog-toolbar label,
+.form-label{color:var(--luxury-ivory)!important;}
+.form-control,
+.form-select,
+.showcase-search-control,
+.showcase-search-control input{
+  background:rgba(255,248,231,.075)!important;
+  color:var(--luxury-white)!important;
+  border-color:rgba(216,173,95,.26)!important;
+}
+.form-control::placeholder,
+.showcase-search-control input::placeholder{color:rgba(239,225,192,.55)!important;}
+.form-control:focus,
+.form-select:focus,
+.showcase-search-control input:focus{
+  border-color:var(--luxury-gold-2)!important;
+  box-shadow:0 0 0 .22rem rgba(216,173,95,.14)!important;
+}
+.form-select option{background:#100c08!important;color:var(--luxury-white)!important;}
+.product-img-wrap,
+.product-detail-img,
+.cart-item img{
+  background:
+    radial-gradient(circle at 50% 28%,rgba(243,213,138,.20),transparent 34%),
+    linear-gradient(180deg,#241b10,#0c0905)!important;
+  border:1px solid rgba(216,173,95,.25)!important;
+}
+.product-img-wrap img,
+.product-detail-img img,
+.wine-cover-media img{filter:drop-shadow(0 24px 30px rgba(0,0,0,.48)) saturate(1.04)!important;}
+.product-badge,
+.wine-cover-badge,
+.wine-strip-badge{
+  background:linear-gradient(135deg,rgba(216,173,95,.95),rgba(243,213,138,.96))!important;
+  color:#120d06!important;
+  border:1px solid rgba(255,248,231,.40)!important;
+}
+.price,
+.wine-cover-price{color:var(--luxury-gold-2)!important;}
+.spec-list,
+.wine-cover-meta span{
+  color:var(--luxury-muted)!important;
+}
+.spec-item b,
+.wine-cover-meta b{color:var(--luxury-ivory)!important;}
+.product-actions .btn{border-radius:999px!important;}
+
+/* Carrusel portada / coverflow */
+.catalog-showcase-section{
+  position:relative!important;
+  overflow:hidden!important;
+  border-block:1px solid rgba(216,173,95,.12)!important;
+}
+.catalog-showcase-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 12%,rgba(243,213,138,.14),transparent 28rem),
+    radial-gradient(circle at 82% 74%,rgba(143,21,58,.12),transparent 26rem)!important;
+}
+.catalog-showcase-section .container{position:relative;z-index:1;}
+.catalog-showcase-head{margin-bottom:1.8rem!important;}
+.showcase-meta{gap:.75rem!important;}
+.showcase-pill-count{
+  color:#120d06!important;
+  background:linear-gradient(135deg,var(--luxury-gold),var(--luxury-gold-2))!important;
+  border:1px solid rgba(243,213,138,.8)!important;
+  box-shadow:0 12px 30px rgba(216,173,95,.18)!important;
+}
+.showcase-filter-panel{
+  padding:1.2rem!important;
+  border-radius:28px!important;
+  margin-bottom:1.4rem!important;
+}
+.showcase-chip-row{gap:.55rem!important;}
+.catalog-showcase{
+  background:
+    radial-gradient(circle at 50% 34%,rgba(216,173,95,.10),transparent 28rem),
+    linear-gradient(180deg,rgba(255,248,231,.045),rgba(255,248,231,.018))!important;
+  border:1px solid rgba(216,173,95,.18)!important;
+  border-radius:34px!important;
+  box-shadow:inset 0 1px 0 rgba(255,248,231,.08), var(--luxury-shadow-soft)!important;
+}
+.catalog-showcase::before,
+.catalog-showcase::after{
+  background:linear-gradient(90deg,#050403,rgba(5,4,3,.78),transparent)!important;
+}
+.catalog-showcase::after{transform:scaleX(-1)!important;}
+.showcase-viewport{cursor:grab!important;}
+.showcase-track{perspective:1700px!important;}
+.showcase-arrow{
+  background:rgba(5,4,3,.92)!important;
+  color:var(--luxury-gold-2)!important;
+  border:1px solid rgba(216,173,95,.38)!important;
+  box-shadow:0 18px 48px rgba(0,0,0,.40)!important;
+}
+.showcase-arrow:hover{
+  background:linear-gradient(135deg,var(--luxury-gold),var(--luxury-gold-2))!important;
+  color:#120d06!important;
+}
+.showcase-arrow:disabled{opacity:.32!important;}
+.wine-cover-card{
+  background:
+    linear-gradient(180deg,rgba(255,248,231,.095),rgba(255,248,231,.035)),
+    linear-gradient(135deg,#1a130b,#080604 68%,#17070d)!important;
+  border:1px solid rgba(216,173,95,.34)!important;
+  border-radius:34px!important;
+  box-shadow:0 28px 76px rgba(0,0,0,.56)!important;
+  overflow:hidden!important;
+}
+.wine-cover-card:hover,
+.wine-cover-card:focus,
+.wine-cover-card.is-open{
+  border-color:rgba(243,213,138,.72)!important;
+  box-shadow:0 34px 94px rgba(0,0,0,.66),0 0 0 1px rgba(243,213,138,.18)!important;
+}
+.wine-cover-media{
+  background:
+    radial-gradient(circle at 50% 28%,rgba(243,213,138,.28),transparent 34%),
+    linear-gradient(180deg,#2a1f12,#100b06)!important;
+  border-bottom:1px solid rgba(216,173,95,.20)!important;
+}
+.wine-cover-media::before,
+.wine-cover-media::after{background:rgba(216,173,95,.14)!important;}
+.wine-cover-glow{
+  background:radial-gradient(circle,rgba(243,213,138,.34),transparent 64%)!important;
+  filter:blur(8px)!important;
+}
+.wine-cover-info{
+  background:linear-gradient(180deg,rgba(7,5,3,.20),rgba(7,5,3,.82) 46%,rgba(7,5,3,.96))!important;
+  border-top:1px solid rgba(216,173,95,.18)!important;
+}
+.wine-cover-kicker,
+.wine-cover-meta i,
+.wine-cover-price{color:var(--luxury-gold-2)!important;}
+.wine-cover-info h3{color:var(--luxury-white)!important;}
+.wine-cover-info strong{color:#e8ca80!important;}
+.wine-cover-info p,
+.wine-cover-meta span{color:var(--luxury-muted)!important;}
+.wine-cover-actions .btn-outline-light{
+  color:var(--luxury-gold-2)!important;
+  border-color:rgba(216,173,95,.36)!important;
+  background:rgba(255,248,231,.055)!important;
+}
+.wine-cover-actions .btn-wine{
+  background:linear-gradient(135deg,#8f153a,#b3194a)!important;
+  color:#fff!important;
+}
+.showcase-footer,
+.showcase-counter,
+.showcase-empty{color:var(--luxury-muted)!important;}
+.showcase-counter strong{color:var(--luxury-gold-2)!important;}
+
+/* Compatibilidad con versión strip anterior */
+.wine-strip-card,
+.wine-strip-summary,
+.wine-strip-expanded{
+  background:linear-gradient(180deg,rgba(255,248,231,.08),rgba(255,248,231,.035))!important;
+  border-color:rgba(216,173,95,.25)!important;
+  color:var(--luxury-white)!important;
+}
+.wine-strip-visual{background:radial-gradient(circle at 50% 28%,rgba(243,213,138,.22),transparent 32%),linear-gradient(180deg,#241b10,#0c0905)!important;}
+.wine-strip-summary span,.wine-expanded-kicker{color:var(--luxury-gold-2)!important;}
+.wine-strip-summary h3,.wine-strip-expanded h3{color:var(--luxury-white)!important;}
+.wine-strip-summary p,.wine-strip-expanded p{color:var(--luxury-muted)!important;}
+
+/* Modal / carrito */
+.modal-content,
+.offcanvas{
+  background:#090705!important;
+  border-color:rgba(216,173,95,.26)!important;
+}
+.modal-header,
+.offcanvas-header{
+  border-bottom:1px solid rgba(216,173,95,.18)!important;
+}
+.modal-title,
+.offcanvas-title{color:var(--luxury-white)!important;}
+.btn-close,
+.btn-close-white{filter:invert(1) sepia(.25) saturate(2)!important;opacity:.9!important;}
+.cart-item{
+  background:rgba(255,248,231,.055)!important;
+  border:1px solid rgba(216,173,95,.18)!important;
+  border-radius:18px!important;
+}
+.qty-control{background:rgba(255,248,231,.07)!important;}
+.qty-control button{background:rgba(216,173,95,.18)!important;color:var(--luxury-gold-2)!important;}
+.cart-total{
+  background:linear-gradient(135deg,#120d06,#2a1a0d 52%,#8f153a)!important;
+  border:1px solid rgba(216,173,95,.28)!important;
+}
+.cart-feedback{
+  background:linear-gradient(135deg,#15100a,#090705)!important;
+  color:var(--luxury-white)!important;
+  border:1px solid rgba(216,173,95,.34)!important;
+}
+
+/* FAQ */
+.accordion-button{
+  background:rgba(255,248,231,.055)!important;
+  color:var(--luxury-white)!important;
+}
+.accordion-button:not(.collapsed){
+  background:rgba(216,173,95,.13)!important;
+  color:var(--luxury-gold-2)!important;
+}
+.accordion-button::after{filter:invert(1) sepia(.4) saturate(2)!important;}
+.accordion-button:focus{box-shadow:0 0 0 .2rem rgba(216,173,95,.12)!important;}
+
+/* Footer */
+.footer-maison{
+  background:
+    radial-gradient(circle at 84% 0%,rgba(216,173,95,.14),transparent 24rem),
+    linear-gradient(135deg,#050403,#0d0a06 52%,#230b14 100%)!important;
+  border-top:1px solid rgba(216,173,95,.20)!important;
+}
+.footer-title{font-weight:950!important;}
+.footer-contact-item i{color:var(--luxury-gold-2)!important;}
+.social-links a{
+  color:var(--luxury-gold-2)!important;
+  background:rgba(255,248,231,.055)!important;
+  border-color:rgba(216,173,95,.26)!important;
+}
+.social-links a:hover{background:var(--luxury-gold)!important;color:#100b05!important;}
+.legal-note{border-top-color:rgba(216,173,95,.16)!important;}
+
+/* Detalles responsive */
+@media(max-width:1199.98px){
+  .catalog-showcase{border-radius:28px!important;}
+  .wine-cover-card{border-radius:28px!important;}
+}
+@media(max-width:991.98px){
+  .hero{padding:136px 0 84px!important;min-height:auto!important;}
+  .section-padding{padding:82px 0!important;}
+  .catalog-showcase{background:transparent!important;border-color:transparent!important;box-shadow:none!important;}
+  .catalog-showcase::before,.catalog-showcase::after{display:none!important;}
+}
+@media(max-width:575.98px){
+  .section-padding{padding:68px 0!important;}
+  .section-title{font-size:2.18rem!important;}
+  .page-hero h1{font-size:2.55rem!important;}
+  .hero h1{font-size:clamp(2.55rem,13vw,4.1rem)!important;}
+  .hero-badges span{font-size:.78rem!important;}
+  .showcase-filter-panel{padding:1rem!important;}
+  .btn-maison,.btn-wine,.btn-gold,.btn-outline-maison{width:100%;}
+}
+
+
+/* =========================================================
+   V21 - Fix carrusel portada
+   - Botones con hitbox real y sin offset.
+   - Botella más grande y mejor encuadrada.
+   - Menos 3D agresivo para evitar clicks fantasmas.
+========================================================= */
+.catalog-showcase,
+.showcase-viewport,
+.showcase-track,
+.wine-cover-card,
+.wine-cover-info,
+.wine-cover-actions,
+.wine-cover-actions .btn{
+  -webkit-transform:translateZ(0);
+}
+
+.wine-cover-card{
+  transform-style:flat!important;
+}
+
+.wine-cover-media{
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  padding:1.2rem 1rem .35rem!important;
+}
+
+.wine-cover-media img{
+  width:auto!important;
+  max-width:min(82%, 220px)!important;
+  max-height:320px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  object-position:center top!important;
+  transform-origin:center bottom!important;
+}
+
+.wine-cover-info{
+  transform:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  clip-path:inset(100% 0 0 0)!important;
+  -webkit-clip-path:inset(100% 0 0 0)!important;
+  pointer-events:none!important;
+  backdrop-filter:blur(8px)!important;
+  -webkit-backdrop-filter:blur(8px)!important;
+}
+
+.wine-cover-card:hover .wine-cover-info,
+.wine-cover-card:focus-within .wine-cover-info,
+.wine-cover-card.is-open .wine-cover-info{
+  opacity:1!important;
+  visibility:visible!important;
+  clip-path:inset(0 0 0 0)!important;
+  -webkit-clip-path:inset(0 0 0 0)!important;
+  pointer-events:auto!important;
+}
+
+.wine-cover-info p{
+  -webkit-line-clamp:3!important;
+}
+
+.wine-cover-bottom{
+  align-items:flex-end!important;
+  gap:.7rem!important;
+}
+
+.wine-cover-actions{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  gap:.6rem!important;
+  position:relative!important;
+  z-index:40!important;
+}
+
+.wine-cover-actions .btn{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  min-height:42px!important;
+  padding:.68rem .72rem!important;
+  position:relative!important;
+  z-index:50!important;
+  pointer-events:auto!important;
+  cursor:pointer!important;
+}
+
+.wine-cover-actions .btn i,
+.wine-cover-actions .btn span{
+  pointer-events:none!important;
+}
+
+.showcase-arrow{
+  z-index:25!important;
+}
+
+@media(max-width:991.98px){
+  .wine-cover-media img{
+    max-width:min(78%, 200px)!important;
+    max-height:295px!important;
+  }
+}
+
+@media(max-width:575.98px){
+  .wine-cover-card{
+    height:390px!important;
+  }
+  .showcase-viewport,
+  .showcase-track{
+    height:425px!important;
+    min-height:425px!important;
+  }
+  .wine-cover-media{
+    padding:1rem .8rem .25rem!important;
+  }
+  .wine-cover-media img{
+    max-width:min(78%, 188px)!important;
+    max-height:278px!important;
+  }
+  .wine-cover-info{
+    padding:.95rem .88rem .9rem!important;
+  }
+  .wine-cover-actions .btn{
+    min-height:40px!important;
+    font-size:.68rem!important;
+  }
+}
+
+
+/* =========================================================
+   V23 - Selects elegantes del catálogo
+========================================================= */
+.lux-native-select{
+  position:absolute!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  width:1px!important;
+  height:1px!important;
+  overflow:hidden!important;
+}
+
+.lux-select{
+  position:relative;
+}
+
+.lux-select-trigger{
+  width:100%;
+  min-height:52px;
+  border-radius:18px;
+  border:1px solid rgba(216,173,95,.34);
+  background:linear-gradient(135deg,rgba(255,248,231,.09),rgba(255,248,231,.05));
+  color:var(--luxury-white);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.75rem;
+  padding:.9rem 1rem;
+  text-align:left;
+  box-shadow:inset 0 1px 0 rgba(255,248,231,.05);
+  transition:border-color .22s ease, box-shadow .22s ease, background .22s ease, transform .22s ease;
+}
+
+.lux-select-trigger:hover,
+.lux-select.is-open .lux-select-trigger{
+  border-color:rgba(243,213,138,.76);
+  box-shadow:0 0 0 .22rem rgba(216,173,95,.12), 0 16px 38px rgba(0,0,0,.20);
+  background:linear-gradient(135deg,rgba(255,248,231,.11),rgba(255,248,231,.07));
+}
+
+.lux-select-trigger i{
+  color:var(--luxury-gold-2);
+  font-size:.9rem;
+  transition:transform .22s ease;
+}
+
+.lux-select.is-open .lux-select-trigger i{
+  transform:rotate(180deg);
+}
+
+.lux-select-value{
+  display:block;
+  font-weight:700;
+  line-height:1.2;
+}
+
+.lux-select-menu{
+  position:absolute;
+  top:calc(100% + .55rem);
+  left:0;
+  right:0;
+  z-index:60;
+  padding:.45rem;
+  border-radius:18px;
+  border:1px solid rgba(216,173,95,.34);
+  background:linear-gradient(180deg,#120c08,#090604 82%);
+  box-shadow:0 24px 60px rgba(0,0,0,.48);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(8px);
+  transition:opacity .18s ease, visibility .18s ease, transform .18s ease;
+}
+
+.lux-select.is-open .lux-select-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+.lux-select-option{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  background:transparent;
+  color:var(--luxury-ivory);
+  text-align:left;
+  padding:.72rem .85rem;
+  font-weight:600;
+  transition:background .18s ease, color .18s ease, transform .18s ease;
+}
+
+.lux-select-option:hover,
+.lux-select-option:focus-visible{
+  background:rgba(216,173,95,.12);
+  color:var(--luxury-white);
+  outline:none;
+}
+
+.lux-select-option.active{
+  background:linear-gradient(135deg,rgba(216,173,95,.94),rgba(243,213,138,.96));
+  color:#140f09;
+}
+
+@media(max-width:575.98px){
+  .lux-select-trigger{
+    min-height:50px;
+    padding:.82rem .9rem;
+  }
+  .lux-select-menu{
+    border-radius:16px;
+  }
+}
+
+
+/* =========================================================
+   V25 - Quitar marcos y fondos de imágenes de producto
+========================================================= */
+.product-img-wrap,
+.product-detail-img,
+.cart-item img,
+.wine-cover-media{
+  background:transparent!important;
+  border:none!important;
+  box-shadow:none!important;
+}
+
+.product-img-wrap::before,
+.product-img-wrap::after,
+.product-detail-img::before,
+.product-detail-img::after,
+.wine-cover-media::before,
+.wine-cover-media::after,
+.catalog-showcase::before,
+.catalog-showcase::after{
+  display:none!important;
+  content:none!important;
+}
+
+.product-img-wrap{
+  padding:20px 14px 10px!important;
+}
+
+.product-detail-img{
+  padding:10px!important;
+  min-height:unset!important;
+}
+
+.product-img-wrap img,
+.product-detail-img img,
+.cart-item img,
+.wine-cover-media img{
+  background:transparent!important;
+  mix-blend-mode:normal!important;
+  filter:drop-shadow(0 18px 26px rgba(0,0,0,.42)) saturate(1.03)!important;
+}
+
+.product-img-wrap img{
+  max-height:252px!important;
+  max-width:100%!important;
+}
+
+.product-detail-img img{
+  max-height:420px!important;
+}
+
+.cart-item img{
+  object-fit:contain!important;
+}
+
+@media(max-width:991px){
+  .product-img-wrap img{
+    max-height:224px!important;
+  }
+}
+
+@media(max-width:575.98px){
+  .product-img-wrap{
+    padding:16px 10px 8px!important;
+  }
+  .product-img-wrap img{
+    max-height:205px!important;
+  }
+}
+
+
+/* =========================================================
+   V26 - Estilo limpio, liso y sin bordes
+========================================================= */
+body::before,
+.hero::before,
+.hero::after,
+.page-hero::after,
+.catalog-showcase-section::before,
+.catalog-showcase::before,
+.catalog-showcase::after,
+.product-img-wrap::before,
+.product-img-wrap::after,
+.product-detail-img::before,
+.product-detail-img::after,
+.wine-cover-media::before,
+.wine-cover-media::after,
+.navbar-maison .nav-link::after{
+  display:none!important;
+  content:none!important;
+}
+
+.navbar-maison,
+.navbar-maison.scrolled,
+.footer-maison,
+.legal-note,
+.hero-panel,
+.paper-card,
+.benefit-card,
+.bodega-card,
+.pack-card,
+.info-card,
+.catalog-toolbar,
+.product-card,
+.accordion-item,
+.modal-content,
+.offcanvas,
+.empty-state,
+.showcase-filter-panel,
+.catalog-showcase,
+.wine-cover-card,
+.wine-cover-info,
+.wine-cover-media,
+.stat-card,
+.cart-feedback,
+.contact-card,
+.form-control,
+.form-select,
+.showcase-search-control,
+.showcase-search-control input,
+.lux-select-trigger,
+.lux-select-menu,
+.filter-btn,
+.btn,
+.showcase-arrow,
+.product-badge,
+.wine-cover-badge,
+.wine-strip-badge,
+.card-icon,
+.footer-logo,
+.cart-item img{
+  border:none!important;
+  box-shadow:none!important;
+  outline:none!important;
+}
+
+.hero-panel,
+.paper-card,
+.benefit-card,
+.bodega-card,
+.pack-card,
+.info-card,
+.catalog-toolbar,
+.product-card,
+.accordion-item,
+.modal-content,
+.offcanvas,
+.empty-state,
+.showcase-filter-panel,
+.catalog-showcase,
+.wine-cover-card,
+.wine-cover-info,
+.wine-cover-media,
+.stat-card{
+  background:linear-gradient(180deg,rgba(255,248,231,.05),rgba(255,248,231,.025))!important;
+  backdrop-filter:none!important;
+}
+
+.navbar-maison,
+.navbar-maison.scrolled{
+  background:rgba(8,6,4,.94)!important;
+  backdrop-filter:blur(10px)!important;
+}
+
+.footer-maison{
+  background:#080604!important;
+}
+
+.legal-note{
+  padding-top:18px!important;
+}
+
+.form-control,
+.form-select,
+.showcase-search-control,
+.showcase-search-control input,
+.lux-select-trigger{
+  background:rgba(255,248,231,.06)!important;
+  color:var(--luxury-white)!important;
+  border-radius:14px!important;
+}
+
+.form-control:focus,
+.form-select:focus,
+.showcase-search-control input:focus,
+.lux-select-trigger:focus{
+  box-shadow:none!important;
+  background:rgba(255,248,231,.08)!important;
+}
+
+.lux-select-menu{
+  background:#100b06!important;
+  border-radius:14px!important;
+}
+
+.filter-btn,
+.btn,
+.showcase-arrow,
+.product-badge,
+.wine-cover-badge,
+.wine-strip-badge,
+.card-icon{
+  border-radius:999px!important;
+}
+
+.filter-btn,
+.showcase-arrow,
+.wine-cover-actions .btn-outline-light,
+.btn-outline-maison,
+.btn-maison{
+  background:rgba(255,248,231,.08)!important;
+  color:var(--luxury-ivory)!important;
+}
+
+.filter-btn.active,
+.filter-btn:hover,
+.btn-wine,
+.btn-gold,
+.showcase-arrow:hover,
+.product-badge,
+.wine-cover-badge,
+.wine-strip-badge,
+.card-icon,
+.lux-select-option.active{
+  background:linear-gradient(135deg,var(--luxury-gold),var(--luxury-gold-2))!important;
+  color:#120d06!important;
+}
+
+.product-card:hover,
+.bodega-card:hover,
+.benefit-card:hover,
+.pack-card:hover,
+.info-card:hover{
+  transform:none!important;
+}
+
+.product-img-wrap,
+.product-detail-img,
+.wine-cover-media{
+  background:transparent!important;
+  border-radius:0!important;
+}
+
+.product-card,
+.bodega-card,
+.pack-card,
+.info-card,
+.paper-card,
+.catalog-toolbar,
+.modal-content,
+.offcanvas,
+.showcase-filter-panel,
+.catalog-showcase,
+.accordion-item,
+.empty-state,
+.hero-panel,
+.stat-card,
+.wine-cover-card,
+.wine-cover-info{
+  border-radius:20px!important;
+}
+
+.wine-cover-info{
+  background:linear-gradient(180deg,rgba(7,5,3,.1),rgba(7,5,3,.78) 42%,rgba(7,5,3,.94))!important;
+}
+
+.showcase-filter-panel,
+.catalog-toolbar{
+  padding:1.25rem!important;
+}
+
+.showcase-meta,
+.showcase-footer,
+.spec-list,
+.product-meta,
+.wine-cover-meta span,
+.showcase-counter,
+.showcase-empty,
+.empty-state,
+.footer-maison p,
+.footer-maison a,
+.legal-note{
+  color:rgba(247,239,217,.76)!important;
+}
+
+.accordion-button,
+.accordion-button:not(.collapsed){
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+.accordion-body,
+.product-desc,
+.section-text{
+  color:rgba(247,239,217,.78)!important;
+}
+
+.footer-logo{
+  background:transparent!important;
+}
+
+@media(max-width:575.98px){
+  .catalog-toolbar,
+  .showcase-filter-panel{
+    padding:1rem!important;
+  }
+}
+
+
+/* =========================================================
+   V27 - Fix carrusel hover estable
+   El carrusel se posiciona por JS con transform inline. No se debe
+   anular el transform al hacer hover porque mueve las fichas.
+========================================================= */
+.catalog-showcase .wine-cover-card:hover,
+.catalog-showcase .wine-cover-card:focus,
+.catalog-showcase .wine-cover-card:focus-within,
+.catalog-showcase .wine-cover-card.is-open{
+  box-shadow:none!important;
+}
+
+.catalog-showcase .wine-cover-card{
+  will-change:transform,opacity,filter!important;
+  transform-style:flat!important;
+}
+
+.catalog-showcase .wine-cover-info{
+  max-height:88%!important;
+  overflow:hidden!important;
+}
+
+.catalog-showcase .wine-cover-card:hover .wine-cover-media img,
+.catalog-showcase .wine-cover-card.is-open .wine-cover-media img{
+  transform:none!important;
+}
+
+
+/* =========================================================
+   V28 - Fondo negro en ficha frontal y fichas del fondo opacas
+========================================================= */
+.catalog-showcase .wine-cover-card.is-active{
+  background:#000!important;
+}
+
+.catalog-showcase .wine-cover-card.is-active .wine-cover-media,
+.catalog-showcase .wine-cover-card.is-active .wine-cover-info{
+  background:#000!important;
+}
+
+.catalog-showcase .wine-cover-card.is-left,
+.catalog-showcase .wine-cover-card.is-right{
+  background:rgba(0,0,0,.32)!important;
+}
+
+.catalog-showcase .wine-cover-card.is-hidden{
+  background:rgba(0,0,0,.16)!important;
+}
+
+.catalog-showcase .wine-cover-card.is-left .wine-cover-media,
+.catalog-showcase .wine-cover-card.is-right .wine-cover-media,
+.catalog-showcase .wine-cover-card.is-left .wine-cover-info,
+.catalog-showcase .wine-cover-card.is-right .wine-cover-info,
+.catalog-showcase .wine-cover-card.is-hidden .wine-cover-media,
+.catalog-showcase .wine-cover-card.is-hidden .wine-cover-info{
+  background:transparent!important;
+}
+
+.catalog-showcase .wine-cover-card.is-left .wine-cover-badge,
+.catalog-showcase .wine-cover-card.is-right .wine-cover-badge,
+.catalog-showcase .wine-cover-card.is-hidden .wine-cover-badge{
+  opacity:.7!important;
+}
+
+
+/* =========================================================
+   V29 - Modal de detalle oscuro y opaco
+========================================================= */
+.modal,
+.modal.show{
+  background:transparent!important;
+}
+
+.modal-backdrop,
+.modal-backdrop.show{
+  --bs-backdrop-opacity:.88!important;
+  opacity:.88!important;
+  background:#000!important;
+}
+
+.modal-dialog{
+  z-index:1060!important;
+}
+
+.modal-content{
+  background:#050403!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  color:var(--luxury-white)!important;
+  border-radius:24px!important;
+  overflow:hidden!important;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer{
+  background:#050403!important;
+}
+
+.modal-header{
+  border-bottom:1px solid rgba(216,173,95,.14)!important;
+}
+
+.modal-footer{
+  border-top:1px solid rgba(216,173,95,.14)!important;
+}
+
+#productModal .product-detail-img,
+#packDetailModal .product-detail-img{
+  background:transparent!important;
+}
+
+#productModal .stat-card,
+#packDetailModal .stat-card,
+#productModal .paper-card,
+#packDetailModal .paper-card{
+  background:rgba(255,255,255,.04)!important;
+  border-radius:18px!important;
+}
+
+#productModal .section-text,
+#productModal .product-meta,
+#productModal .stat-card span,
+#productModal .paper-card p,
+#packDetailModal .section-text,
+#packDetailModal .product-meta,
+#packDetailModal .stat-card span,
+#packDetailModal .paper-card p{
+  color:rgba(247,239,217,.86)!important;
+}
+
+/* =========================================================
+   V30/V31 - Detalle grande + fix dropdown/carrusel
+   - Imagen de detalle grande en ordenador.
+   - Dropdown por encima del carrusel sin romper position:absolute.
+========================================================= */
+#productModal .product-detail-img{
+  min-height:700px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+
+#productModal .product-detail-img img{
+  max-height:700px!important;
+  width:auto!important;
+  max-width:100%!important;
+  object-fit:contain!important;
+}
+
+/* El panel de filtros debe quedar por encima del carrusel */
+.catalog-showcase-section{
+  overflow:visible!important;
+}
+
+#showcaseFilters,
+.showcase-filter-panel,
+.catalog-toolbar{
+  position:relative!important;
+  z-index:5000!important;
+  overflow:visible!important;
+}
+
+.lux-select{
+  position:relative!important;
+  z-index:5010!important;
+}
+
+.lux-select.is-open{
+  z-index:99990!important;
+}
+
+.lux-select-menu{
+  z-index:99999!important;
+}
+
+/* Restaurar el carrusel: NO volver relativas las fichas */
+.catalog-showcase,
+#catalogShowcase{
+  position:relative!important;
+  z-index:1!important;
+  overflow:hidden!important;
+}
+
+.showcase-viewport{
+  position:relative!important;
+  z-index:1!important;
+  overflow:hidden!important;
+}
+
+.showcase-track{
+  position:relative!important;
+  z-index:1!important;
+  overflow:visible!important;
+}
+
+.catalog-showcase .wine-cover-card{
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  transform-style:flat!important;
+  will-change:transform,opacity,filter!important;
+}
+
+@media(max-width:991.98px){
+  #productModal .product-detail-img{
+    min-height:520px!important;
+  }
+  #productModal .product-detail-img img{
+    max-height:520px!important;
+  }
+}
+
+@media(max-width:575.98px){
+  #productModal .product-detail-img{
+    min-height:360px!important;
+  }
+  #productModal .product-detail-img img{
+    max-height:360px!important;
+  }
+}
+
