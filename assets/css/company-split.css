@@ -2502,3 +2502,284 @@ html[data-theme="light"] .company-entry-reveal{
     background-position:center center, center center, center center!important;
   }
 }
+
+/* =========================================================
+   V62 - Ajuste: portada inicio con imágenes más difuminadas
+========================================================= */
+.company-entry-card::before{
+  filter: blur(3px) saturate(1.04) contrast(1.03) brightness(.58) !important;
+}
+
+.company-entry-card:hover::before{
+  filter: blur(2.4px) saturate(1.08) contrast(1.05) brightness(.66) !important;
+}
+
+.company-entry-reveal{
+  filter: blur(2px) saturate(1.08) contrast(1.07) brightness(.90) drop-shadow(0 22px 58px rgba(0,0,0,.50)) !important;
+}
+
+html[data-theme="light"] .company-entry-card::before{
+  filter: blur(3px) saturate(1.01) contrast(1.02) brightness(.88) !important;
+}
+
+html[data-theme="light"] .company-entry-reveal{
+  filter: blur(2px) saturate(1.02) contrast(1.02) brightness(1) drop-shadow(0 16px 34px rgba(81,60,25,.14)) !important;
+}
+
+/* =========================================================
+   V63 - Fix contraste notificación carrito en modo claro
+   Mantiene el toast oscuro y el texto blanco para que se lea.
+========================================================= */
+.cart-feedback,
+html[data-theme="light"] .cart-feedback,
+html[data-theme="dark"] .cart-feedback{
+  background:#050403 !important;
+  color:#fff8e7 !important;
+  border:1px solid rgba(243,213,138,.18) !important;
+  border-left:5px solid #1db954 !important;
+  box-shadow:0 18px 45px rgba(0,0,0,.28) !important;
+}
+
+.cart-feedback i,
+html[data-theme="light"] .cart-feedback i,
+html[data-theme="dark"] .cart-feedback i{
+  color:#1db954 !important;
+}
+
+/* =========================================================
+   V64 - Fix carrusel en teléfono
+   Corrige botellas cortadas, cards solapadas y huecos gigantes.
+========================================================= */
+@media (max-width: 767.98px){
+  body[data-company] .company-carousel-section{
+    padding:28px 0 54px!important;
+    overflow:hidden!important;
+  }
+
+  body[data-company] .company-selection-head{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    gap:.75rem!important;
+    margin-bottom:1rem!important;
+    padding-inline:2px!important;
+  }
+
+  body[data-company] .company-selection-head h1{
+    font-size:clamp(2.45rem,12vw,3.65rem)!important;
+    line-height:.9!important;
+    letter-spacing:-.055em!important;
+  }
+
+  body[data-company] .company-soft-link{
+    align-self:flex-start!important;
+    font-size:.86rem!important;
+    min-height:40px!important;
+    padding:.65rem .95rem!important;
+  }
+
+  body[data-company] .company-showcase,
+  body[data-company] .company-carousel-viewport,
+  body[data-company] .company-carousel-track{
+    width:100%!important;
+    min-height:590px!important;
+    height:590px;
+    border-radius:26px!important;
+    overflow:hidden!important;
+  }
+
+  body[data-company] .company-carousel-card,
+  body[data-company] .company-carousel-card.is-active{
+    width:calc(100vw - 52px)!important;
+    max-width:520px!important;
+    min-height:0!important;
+    height:auto!important;
+    top:18px!important;
+    left:50%!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    align-content:start!important;
+    gap:.75rem!important;
+    padding:1rem!important;
+    border-radius:24px!important;
+    overflow:hidden!important;
+    transform:translateX(-50%) scale(1)!important;
+  }
+
+  body[data-company] .company-carousel-card.is-side,
+  body[data-company] .company-carousel-card.is-hidden{
+    opacity:0!important;
+    pointer-events:none!important;
+    visibility:hidden!important;
+    transform:translateX(-50%) scale(.9)!important;
+  }
+
+  body[data-company] .company-carousel-card.is-side .company-carousel-info,
+  body[data-company] .company-carousel-card.is-hidden .company-carousel-info{
+    display:none!important;
+  }
+
+  body[data-company] .company-carousel-image,
+  body[data-company] .company-carousel-card.is-active .company-carousel-image{
+    width:100%!important;
+    min-height:310px!important;
+    height:310px!important;
+    max-height:330px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    overflow:hidden!important;
+    border-radius:20px!important;
+    padding:1rem .75rem .75rem!important;
+  }
+
+  body[data-company] .company-carousel-image img,
+  body[data-company] .company-carousel-card.is-active .company-carousel-image img{
+    width:auto!important;
+    max-width:84%!important;
+    max-height:286px!important;
+    height:auto!important;
+    object-fit:contain!important;
+    transform:none!important;
+  }
+
+  body[data-company] .company-carousel-badge{
+    top:.75rem!important;
+    left:.75rem!important;
+    z-index:4!important;
+    font-size:.62rem!important;
+    padding:.38rem .68rem!important;
+  }
+
+  body[data-company] .company-carousel-info{
+    display:block!important;
+    min-width:0!important;
+    text-align:left!important;
+    padding:.2rem .15rem 0!important;
+    overflow:hidden!important;
+  }
+
+  body[data-company] .company-carousel-kicker{
+    font-size:.64rem!important;
+    letter-spacing:.11em!important;
+    margin-bottom:.4rem!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  body[data-company] .company-carousel-info h2{
+    font-size:clamp(1.65rem,8vw,2.25rem)!important;
+    line-height:.94!important;
+    margin:0 0 .5rem!important;
+    display:-webkit-box!important;
+    -webkit-line-clamp:2!important;
+    -webkit-box-orient:vertical!important;
+    overflow:hidden!important;
+  }
+
+  body[data-company] .company-carousel-info p{
+    font-size:.86rem!important;
+    line-height:1.38!important;
+    margin:0 0 .7rem!important;
+    display:-webkit-box!important;
+    -webkit-line-clamp:2!important;
+    -webkit-box-orient:vertical!important;
+    overflow:hidden!important;
+  }
+
+  body[data-company] .company-carousel-meta{
+    grid-template-columns:1fr!important;
+    gap:.28rem!important;
+    margin-bottom:.75rem!important;
+  }
+
+  body[data-company] .company-carousel-meta span{
+    justify-content:flex-start!important;
+    font-size:.72rem!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  body[data-company] .company-carousel-actions{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:.55rem!important;
+    justify-content:stretch!important;
+    align-items:center!important;
+  }
+
+  body[data-company] .company-carousel-actions .company-btn{
+    width:100%!important;
+    min-width:0!important;
+    min-height:42px!important;
+    font-size:.72rem!important;
+    padding:.6rem .55rem!important;
+  }
+
+  body[data-company] .company-carousel-arrow{
+    width:52px!important;
+    height:52px!important;
+    top:286px!important;
+    transform:translateY(-50%)!important;
+    z-index:30!important;
+  }
+
+  body[data-company] .company-carousel-arrow.prev{left:.85rem!important;}
+  body[data-company] .company-carousel-arrow.next{right:.85rem!important;}
+
+  body[data-company] .company-carousel-footer{
+    margin-top:1.1rem!important;
+    flex-direction:column!important;
+    text-align:center!important;
+    gap:.25rem!important;
+  }
+
+  body[data-company] .company-carousel-footer [data-company-carousel-count]{
+    font-size:1.55rem!important;
+    line-height:1!important;
+  }
+}
+
+@media (max-width: 420px){
+  body[data-company] .company-showcase,
+  body[data-company] .company-carousel-viewport,
+  body[data-company] .company-carousel-track{
+    min-height:570px!important;
+    height:570px;
+  }
+
+  body[data-company] .company-carousel-card,
+  body[data-company] .company-carousel-card.is-active{
+    width:calc(100vw - 38px)!important;
+    padding:.85rem!important;
+  }
+
+  body[data-company] .company-carousel-image,
+  body[data-company] .company-carousel-card.is-active .company-carousel-image{
+    height:292px!important;
+    min-height:292px!important;
+    max-height:305px!important;
+  }
+
+  body[data-company] .company-carousel-image img,
+  body[data-company] .company-carousel-card.is-active .company-carousel-image img{
+    max-height:270px!important;
+    max-width:86%!important;
+  }
+
+  body[data-company] .company-carousel-arrow{
+    top:268px!important;
+    width:48px!important;
+    height:48px!important;
+  }
+
+  body[data-company] .company-carousel-info h2{
+    font-size:1.7rem!important;
+  }
+
+  body[data-company] .company-carousel-actions .company-btn{
+    font-size:.68rem!important;
+  }
+}

@@ -56,6 +56,8 @@
 
     const active = ((state.index % total) + total) % total;
     const compact = window.matchMedia('(max-width: 767.98px)').matches;
+    const phone = window.matchMedia('(max-width: 575.98px)').matches;
+    let activeCard = null;
 
     cards.forEach((el, i) => {
       const diff = offsetFor(i, active, total);
@@ -68,28 +70,31 @@
       el.style.removeProperty('rotate');
       el.style.removeProperty('scale');
       el.style.left = '50%';
-      el.style.top = '50%';
+      el.style.top = compact ? '18px' : '50%';
 
       if(diff === 0){
+        activeCard = el;
         el.classList.add('is-active');
         el.style.zIndex = 12;
         el.style.opacity = '1';
         el.style.pointerEvents = 'auto';
         el.style.filter = 'none';
         el.style.transform = compact
-          ? 'translate(-50%, -50%) scale(1)'
+          ? 'translateX(-50%) scale(1)'
           : 'translate(-50%, -50%) scale(1)';
         return;
       }
 
       if(abs === 1){
         el.classList.add('is-side');
-        el.style.zIndex = 4;
+        el.style.zIndex = compact ? 1 : 4;
         el.style.opacity = compact ? '0' : '.30';
         el.style.pointerEvents = compact ? 'none' : 'auto';
         el.style.filter = 'saturate(.58) brightness(.58) blur(.15px)';
         const x = compact ? 0 : (dir * Math.min(430, window.innerWidth * .24));
-        el.style.transform = `translate(-50%, -50%) translateX(${x}px) scale(.72)`;
+        el.style.transform = compact
+          ? 'translateX(-50%) scale(.92)'
+          : `translate(-50%, -50%) translateX(${x}px) scale(.72)`;
         return;
       }
 
@@ -99,11 +104,40 @@
       el.style.pointerEvents = 'none';
       el.style.filter = 'blur(2px)';
       const x = compact ? 0 : (dir * Math.min(680, window.innerWidth * .38));
-      el.style.transform = `translate(-50%, -50%) translateX(${x}px) scale(.56)`;
+      el.style.transform = compact
+        ? 'translateX(-50%) scale(.86)'
+        : `translate(-50%, -50%) translateX(${x}px) scale(.56)`;
     });
 
     const count = document.querySelector('[data-company-carousel-count]');
     if(count) count.textContent = `${String(active + 1).padStart(2,'0')} de ${String(total).padStart(2,'0')} vinos`;
+
+    // En móvil la tarjeta no se centra en vertical: se ancla arriba y el contenedor
+    // toma una altura real. Esto evita botellas cortadas, huecos enormes y solapes.
+    const showcase = document.querySelector('[data-company-carousel]');
+    const viewport = document.querySelector('.company-carousel-viewport');
+    const track = document.querySelector('[data-company-carousel-track]');
+    if(compact && activeCard && showcase && viewport && track){
+      requestAnimationFrame(() => {
+        const image = activeCard.querySelector('.company-carousel-image');
+        const info = activeCard.querySelector('.company-carousel-info');
+        const measured = Math.ceil(activeCard.scrollHeight || activeCard.getBoundingClientRect().height || 560);
+        const min = phone ? 560 : 590;
+        const max = phone ? 680 : 720;
+        const nextHeight = Math.max(min, Math.min(max, measured + 42));
+        [showcase, viewport, track].forEach(node => {
+          node.style.minHeight = `${nextHeight}px`;
+          node.style.height = `${nextHeight}px`;
+        });
+        if(image) image.style.maxHeight = phone ? '330px' : '360px';
+        if(info) info.style.maxHeight = 'none';
+      });
+    }else if(showcase && viewport && track){
+      [showcase, viewport, track].forEach(node => {
+        node.style.removeProperty('height');
+        node.style.removeProperty('min-height');
+      });
+    }
 
     if(typeof window.MaisonMotionRefresh === 'function'){
       window.MaisonMotionRefresh();
